@@ -5,9 +5,11 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(knitr)
 ```
 
+```{r, include = FALSE}
+library(knitr)
+```
 
 ```{r, echo = FALSE}
 # hidden from user, these are the functions to provide the summaries
