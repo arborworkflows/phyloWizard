@@ -3,13 +3,10 @@
 
 ## The output format: github_document (RMarkdown)
 
-make_header <- function(title, handle){
-    cat("--- \n", file = handle)
-    cat('title: "', title, '" \n', file = handle, append = TRUE, sep="")
-    cat("output: github_document
---- \n
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```"
-, file = handle, append = TRUE)
+make_header <- function(title){
+    out_string <- vector(mode="character")
+    out_string <- c(out_string, "--- \n")
+    out_string <- c(out_string, paste0('title: \"', title, '\" \n', sep=""))
+    out_string <- c(out_string, "output: github_document \n --- \n ```{r setup, include=FALSE} \n knitr::opts_chunk$set(echo = FALSE) ``` \n")
+    return( paste(out_string, collapse=" ") )
 }
