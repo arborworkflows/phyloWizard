@@ -1,0 +1,75 @@
+---
+title: "PhyloWizard Discrete"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include = FALSE}
+library(knitr)
+```
+
+```{r, echo = FALSE}
+# hidden from user, these are the functions to provide the summaries
+
+type_data <- function(data) {
+  if (length(unique(data)) > 2) {
+    type <- "is multi state"
+  } else if (length(unique(data)) == 2) {
+    type <- "is binary"
+  } else if (length(unique(data)) == 1) {
+    type <- "has no variation"
+  } else {
+    type <- "uh oh!! unknown error"
+  }
+  return(type)
+}
+
+num_states <- function(data) {
+  length(unique(data))
+}
+
+num_obs <- function(data) {
+  length(data)
+}
+
+make_discr_plot <- function(data, char_name = NA) {
+  counts <- table(data)
+  barplot(counts, main = char_name, 
+          xlab = "character states",
+          ylab = "number of tips")
+}
+
+make_discr_table <- function(data, char_name = NA) {
+  counts <- table(data)
+  kable(counts, col.names = c("Char. States","Num. of Tips"))
+}
+
+```
+
+## Let's make up test data 
+
+Here we go!! 
+
+```{r cars}
+
+test_multi <- sample(c(0,1,2), size = 100, replace = TRUE)
+test_binary <- sample(c(0,1), size = 100, replace = TRUE)
+
+```
+
+
+Your data `r type_data(test_multi)`. You have `r num_obs(test_multi)` observations and `r num_states(test_multi)` character states. 
+
+```{r, echo = FALSE}
+make_discr_table(test_multi)
+```
+
+```{r, echo = FALSE}
+make_discr_plot(test_multi)
+```
+
+
+
