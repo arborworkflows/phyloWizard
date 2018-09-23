@@ -10,4 +10,5 @@
 ## ROADMAP
 ###############################################################################
 
-
+ - Make modular Markdown information attached to data types and statistical methods.
+ - Tools to be associated with existent functions.
