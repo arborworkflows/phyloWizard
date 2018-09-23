@@ -1,0 +1,74 @@
+---
+title: "summary_data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r}
+library(geiger)
+
+tr  <- read.tree("/home/blubb/Documents/Workshops_PD/Ithaca_2018/example_data_ARBOR/CostaRicaHeliconia.tre.phy")
+```
+
+## Phylogenetic information
+
+loaded phylogeny:
+
+```{r, echo = FALSE}
+plot(tr, cex = 0.5)
+```
+
+```{r, echo = FALSE}
+
+ultra <- function(tr){
+  if (ape::is.ultrametric(tr) == TRUE){
+     return("ultrametric")
+  }else{
+     return("not ultrametric")
+  }
+}
+# is it ultrametric
+
+```
+
+The phylogeny includes `r tr$Nnode` nodes and is `r ultra(tr)`.
+
+## Compare lineage to OpenTreeOfLife
+
+```{r}
+library(rotl)
+name = "Heliconia"
+```
+
+
+
+```{r}
+resolved_names <- tnrs_match_names(name)
+id <- ott_id(resolved_names)
+tr_otol <- tol_subtree(ott_id = id[[1]])
+sampling = (tr$Nnode) / (tr_otol$Nnode)
+hierarchy = tax_lineage(taxonomy_taxon_info(id, include_lineage = TRUE))
+
+```
+
+You are comparing `r resolved_names$unique_name` to OpenTree, which has the ott `r id[[1]]` .
+
+Here are the corresponding rank information to your group:
+```{r}
+print(hierarchy)
+```
+
+The phylogeny from OToL looks like this and has `r tr_otol$Nnode` nodes: 
+```{r}
+plot(tr_otol)
+```
+
+Compared to that, your sampling proportion is `r sampling`.
+
+
+
+
