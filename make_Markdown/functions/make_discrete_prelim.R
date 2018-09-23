@@ -56,5 +56,6 @@ make_discrete_prelim <- function(data, out_string){
     out_figure <- paste0("![](data:image/png;base64,", txt, ")", collapse="")
     out_string <- c(out_string, out_figure)
     out_string <- c(out_string, "\n")
+    return( out_string )
 }
 
