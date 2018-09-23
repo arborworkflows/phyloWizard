@@ -1,0 +1,13 @@
+###############################################################################
+## PROJECT OBJECTIVES
+###############################################################################
+
+ 1) Make a Markdown document with summary information from your data.
+ 2) Markdown will be dependent on the type of data that you have.
+ 3) Mardown can be expanded by information from the functions in the user workflow.
+
+###############################################################################
+## ROADMAP
+###############################################################################
+
+
