@@ -37,7 +37,7 @@ make_discr_table <- function(data, char_name = NA) {
 
 make_discrete_prelim <- function(data, out_string){
     ## Get the data, do the things, return string.
-    out_string <- c(out_string, "## Here we go!! \n Your data ")
+    out_string <- c(out_string, "\n## phyloWizard discrete. \n Your data ")
     out1 <- type_data(data)
     out_string <- c(out_string, out1, ". You have ")
     out2 <- num_obs(data)
@@ -50,6 +50,6 @@ make_discrete_prelim <- function(data, out_string){
     png(tf1 <- tempfile(fileext = ".png")); make_discr_plot(data); dev.off()
     txt <- base64Encode(readBin(tf1, "raw", file.info(tf1)[1, "size"]), "txt")
     out_figure <- paste0("![](data:image/png;base64,", txt, ")", collapse="")
-    out_string <- c(out_string, out_figure, "\n")
+    out_string <- c(out_string, out_figure, "\n \n")
     return( paste0(out_string, collapse = "") )
 }
