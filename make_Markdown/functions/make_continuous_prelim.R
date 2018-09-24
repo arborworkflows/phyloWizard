@@ -64,7 +64,7 @@ make_continuous_prelim <- function(data, out_string){
     out_string <- c(out_string, as.character( round(summary$medi, digits = 2) ) )
     out_string <- c(out_string, ", and standard deviation of ")
     out_string <- c(out_string, as.character( round(summary$stand_dv, digits = 2) ) )
-    out_string <- c(out_string, ". The data range from")
+    out_string <- c(out_string, ". The data range from ")
     out_string <- c(out_string, as.character( round(summary$range_lower, digits = 2) ) )
     out_string <- c(out_string, " to ", as.character( round(summary$range_upper, digits = 2) ) )
     out_string <- c(out_string, ". \n The plot below shows the distribution of your data compared to a normal distribution with the same mean and standard deviation. The Shapiro-Wilk test of normality compares your data to a normal distribution. A significant p-value indicates that your data are significantly different from a normal distribution. \n \n")
