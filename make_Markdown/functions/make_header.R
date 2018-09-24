@@ -5,8 +5,6 @@
 
 make_header <- function(title){
     out_string <- vector(mode="character")
-    out_string <- c(out_string, "--- \n")
-    out_string <- c(out_string, paste0('title: \"', title, '\" \n', sep=""))
-    out_string <- c(out_string, "output: github_document \n --- \n ```{r setup, include=FALSE} \n knitr::opts_chunk$set(echo = FALSE) ``` \n")
-    return( paste(out_string, collapse=" ") )
+    out_string <- c(out_string, paste0("## ", as.character(title), "\n \n", collapse = "") )
+    return( paste(out_string, collapse="") )
 }
