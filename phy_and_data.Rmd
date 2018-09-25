@@ -1,0 +1,29 @@
+---
+title: "Phylogeny and Data"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pandoc)
+library(aRbor)
+library(knitr)
+```
+
+## Some information might have been removed during analysis
+
+Be aware that the function dropped some tips of your phylogeny:
+```{r echo = FALSE}
+if (length(attributes(td)$dropped$dropped_from_data) >=1){
+  kable(attributes(td)$dropped$dropped_from_data)
+}else
+   pander::pander("No data was dropped.")
+```
+
+It might has dropped information from your trait data as well: 
+```{r, eval = T, echo = FALSE}
+if (length(attributes(td)$dropped$dropped_from_tree) >=1){
+    kable(attributes(td)$dropped$dropped_from_tree)
+}else
+  pander::pander("No data was dropped.")
+```

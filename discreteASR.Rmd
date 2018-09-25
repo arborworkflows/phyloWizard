@@ -82,21 +82,3 @@ ace_output = output_table(ace_arbor)
 
 kable(ace_output)
 ```
-
-## Some information might have been removed during analysis
-
-Be aware that the function dropped some tips of your phylogeny:
-```{r}
-if (length(attributes(td)$dropped$dropped_from_data) >=1){
-  kable(attributes(td)$dropped$dropped_from_data)
-}else
-   pander::pander("No data was dropped.")
-```
-
-It might has dropped information from your trait dara as well: 
-```{r, eval = T}
-if (length(attributes(td)$dropped$dropped_from_tree) >=1){
-    kable(attributes(td)$dropped$dropped_from_tree)
-}else
-  pander::pander("No data was dropped.")
-```
