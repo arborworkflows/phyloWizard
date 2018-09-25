@@ -21,10 +21,13 @@ Trait should evolve independently from other non-tested traits.
 
 ## Recommended steps after running ASR
 
+
+
 ## Programs out of ARBOR which do similar analysis
 
 1. Mesquite
-2. ace function in the ape package in R 
+2. ace function in the ape package in R
+3. RevBayes
 
 
 ## Relevant literature
