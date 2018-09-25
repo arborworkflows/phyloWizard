@@ -44,3 +44,42 @@ The mean value of InflorL extant values is 0.5427895, the reconstructed nodes ha
 The plot below shows the relationship between the width of your 95% confidence intervals and time as indicated by node ages.
 
 ![](continuous_anc_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+Some information might have been removed during analysis
+--------------------------------------------------------
+
+Be aware that the function dropped some tips of your phylogeny:
+
+| x                                  |
+|:-----------------------------------|
+| Musella\_lasiocarpa                |
+| Ensete\_ventricosum                |
+| Ensete\_superbum                   |
+| Musa\_coccinea                     |
+| Musa\_sp12                         |
+| Musa\_ornata                       |
+| Musa\_basjoo                       |
+| Monocostus\_uniflorus              |
+| Globba\_winitii                    |
+| Canna\_jaegeriana                  |
+| Thaumatococcus\_daniellii          |
+| Halopegia\_azurea                  |
+| Orchidantha\_maxillarioides        |
+| Ravenala\_madagascariensis         |
+| Strelitzia\_reginae                |
+| Strelitzia\_caudata                |
+| H\_willisiana\_Collins\_EC9957     |
+| H\_mooreana\_Ortega\_49\_AF        |
+| H\_sp\_Specht\_0608                |
+| H\_sp\_Kress\_943698               |
+| H\_x\_rauliniana\_Abalo\_sn\_AF\_A |
+| H\_berryi\_Wasshousen\_2106\_AF    |
+| H\_gloriosa\_Collins\_96203        |
+| H\_plowmania\_Kress\_943677        |
+| H\_waoraniana\_Kress\_965694\_AF   |
+| H\_x\_rauliniana\_Abalo\_sn\_AF\_B |
+| H\_penduloides\_Kress\_sn          |
+| H\_atratensis\_Kress\_903142       |
+| H\_sp\_Specht\_0805                |
+
+It might has dropped information from your trait data as well: No data was dropped.

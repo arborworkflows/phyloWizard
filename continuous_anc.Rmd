@@ -46,7 +46,6 @@ CI_age <- data.frame(age = branching.times(attributes(ace_arbor)$td$phy),
                      CI_width = ace_arbor[[1]]$upperCI95 - ace_arbor[[1]]$lowerCI95)
 ```
 
-
 The mean value of `r paste(trait_name)` extant values is `r orig_mean`, the reconstructed nodes have a mean value of `r anc_mean`. The original range of your data values is `r orig_range[1]` to `r orig_range[2]`. The estimated node values range from `r anc_range[1]` to `r anc_range[2]`. When we include the 95% confidence invervals for those estimates, the estimates range from `r anc_range_CI[1]` to `r anc_range_CI[2]`. A portion of those estimates are displayed below. 
 
 ```{r, echo = FALSE}
@@ -70,4 +69,3 @@ plot(CI_width~age, data = CI_age,
      ylab = "Width of 95% CI for Estimated Values")
 
 ```
-
