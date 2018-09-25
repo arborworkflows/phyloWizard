@@ -29,21 +29,23 @@ td
 
 ace_arbor = aRbor::aceArbor( select_(td, "Inflorescence"), charType='discrete', aceType = 'marginal')
 
-chartype = attributes(ace_arbor)$charType
-acetype = attributes(ace_arbor)$aceType
-numChar = length(attributes(ace_arbor)$charStates[[1]])
 
-
-
-# what is what here?
-
-trait.ratio = get_char_ratio(ace_arbor)
-tipChar = table(attributes(ace_arbor)$td$dat)
-
-
-
-lik =  attributes(ace_arbor[[1]])$fit$lnLik
-rate = attributes(ace_arbor[[1]])$fit$par.full
-ratematrix = ace_arbor[[1]]
+aceTable = function(ace_arbor){
+  chartype = attributes(ace_arbor)$charType
+  acetype = attributes(ace_arbor)$aceType
+  numChar = length(attributes(ace_arbor)$charStates[[1]])
+  
+  trait.ratio = get_char_ratio(ace_arbor)
+  tipChar = table(attributes(ace_arbor)$td$dat)
+  
+  lik =  attributes(ace_arbor[[1]])$fit$lnLik
+  rate = attributes(ace_arbor[[1]])$fit$par.full
+  ratematrix = ace_arbor[[1]]
+  
+  ace_table <- data.frame("charType"=chartype, "aceType"=acetype, "numChar"=numChar, 'trait.ratio'=trait.ratio, "tipChar"=tipChar, "lik"=lik, 'rate'=rate)
+  
+  return(ace_table)
+  
+}
 
 

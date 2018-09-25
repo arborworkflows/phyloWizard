@@ -1,0 +1,3 @@
+## This outputs the html using the pandoc render.
+
+pandoc test.md -o md_test.html

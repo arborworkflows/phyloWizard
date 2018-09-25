@@ -1,0 +1,78 @@
+---
+title: "Discrete ancestral State Reconstruction"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, include=FALSE}
+#devtools::install_github("arborworkflows/aRbor")
+library(aRbor)
+library(geiger)
+library(knitr)
+
+get_char_ratio <- function(ace_arbor){
+  trait_ratio = list()
+  for(row in 1:(length(ace_arbor[[1]])/2) ){
+    max = max(ace_arbor[[1]][row,])
+    for (cell in 1:length(ace_arbor[[1]][row,] )){
+      val = ace_arbor[[1]][row,cell]
+      if (val == max){
+        trait_ratio = c(trait_ratio, cell)
+      }
+    }
+  }
+  return(table(as.character(trait_ratio)))
+}
+input_table = function(ace_arbor){
+  chartype = attributes(ace_arbor)$charType
+  acetype = attributes(ace_arbor)$aceType
+  numChar = length(attributes(ace_arbor)$charStates[[1]])
+  lik =  attributes(ace_arbor[[1]])$fit$lnLik
+  rate = attributes(ace_arbor[[1]])$fit$par.full
+
+  ace_table <- t(data.frame("type of trait"=chartype, "asr method"=acetype, "number of traits"=numChar, "logLikelihood"=lik, 'transition rate'=rate))[,1]
+  #names(ace_table) <- c("type", "value")
+  return(ace_table)
+}
+
+output_table = function(ace_arbor){
+  trait.ratio = get_char_ratio(ace_arbor)
+  tipChar = as.matrix(table(attributes(ace_arbor)$td$dat))
+  
+  ace_table <- data.frame('trait.ratio'=trait.ratio, "tipChar"=tipChar)
+  names(ace_table) <- c("trait", "internal node frequency", 'tip frequency')
+  rownames(ace_table) <- c()
+  return(ace_table)
+}
+
+# Load your data  
+tr  <- read.tree("/home/blubb/Documents/Workshops_PD/Ithaca_2018/example_data_ARBOR/Heliconia_all_dated_mod.phy")
+trait <- read.csv('/home/blubb/Documents/Workshops_PD/Ithaca_2018/example_data_ARBOR/Heliconia_phylogeny_matrix.csv')
+  ape::is.ultrametric(tr)
+  if (  ape::is.ultrametric(tr) == FALSE){
+    tr <- phytools::force.ultrametric(tr)
+  }
+td = treeplyr::make.treedata(tr, trait)
+td
+
+ace_arbor = aRbor::aceArbor( select_(td, "Inflorescence"), charType='discrete', aceType = 'marginal')
+ace_table = input_table(ace_arbor)
+ace_output = output_table(ace_arbor)
+
+```
+
+
+Besides calculating the ancestral states in the phylogeny, here are some summary information for discrete character.
+
+Table 1 shows you your type of trait, input, reconstruction method, the log Likelihood and the transition rate between the traits.
+```{r}
+  kable(ace_table)
+```
+
+Table 2 sums up the result.
+```{r}
+kable(ace_output)
+```

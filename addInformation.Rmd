@@ -1,0 +1,24 @@
+---
+title: "Extended Information"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Recommended steps before running ASR
+
+## Recommended steps after running ASR
+
+## Programs out of ARBOR which do similar analysis
+
+1. Mesquite
+2. ace function in the ape package in R 
+
+
+## Relevant literature
+
+1.
+2.
+
