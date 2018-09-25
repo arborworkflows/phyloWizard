@@ -17,7 +17,7 @@ make_summary_continuous_asr <- function(ace_arbor, out_string){
     CI_age <- data.frame(age = branching.times(attributes(ace_arbor)$td$phy),
                          CI_width = ace_arbor[[1]]$upperCI95 - ace_arbor[[1]]$lowerCI95)
 
-    out_string <- c(out_string, paste0("##Summary ASR \n \nThe mean value of ", paste(trait_name), " extant values is ", orig_mean,
+    out_string <- c(out_string, paste0("## Summary ASR \n \nThe mean value of ", paste(trait_name), " extant values is ", orig_mean,
                                        " the reconstructed nodes have a mean value of ", anc_mean,
                                        ". The original range of your data values is ", orig_range[1],
                                        " to ", orig_range[2], ". The estimated node values range from ",
