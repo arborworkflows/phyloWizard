@@ -17,13 +17,13 @@ make_summary_continuous_asr <- function(ace_arbor, out_string){
     CI_age <- data.frame(age = branching.times(attributes(ace_arbor)$td$phy),
                          CI_width = ace_arbor[[1]]$upperCI95 - ace_arbor[[1]]$lowerCI95)
 
-    out_string <- c(out_string, paste0("The mean value of ", paste(trait_name), " extant values is ", orig_mean,
+    out_string <- c(out_string, paste0("##Summary ASR \n \nThe mean value of ", paste(trait_name), " extant values is ", orig_mean,
                                        " the reconstructed nodes have a mean value of ", anc_mean,
                                        ". The original range of your data values is ", orig_range[1],
                                        " to ", orig_range[2], ". The estimated node values range from ",
                                        anc_range[1], " to ", anc_range[2], ".", collapse="") )
     out_string <- c(out_string, paste0(" When we include the 95% confidence invervals for those estimates, the estimates range from "
-                                     , anc_range_CI[1], " to ", anc_range_CI[2], ". A portion of those estimates are displayed below./n /n"
+                                     , anc_range_CI[1], " to ", anc_range_CI[2], ". A portion of those estimates are displayed below.\n \n"
                                      , collapse = "") )
 
     if (nrow(ace_arbor[[1]]) > 20) {
@@ -36,7 +36,7 @@ make_summary_continuous_asr <- function(ace_arbor, out_string){
     table1 <- paste0(table1, collapse = "\n")
     out_string <- c(out_string, table1, "\n \n")
 
-    out_string <- c(out_string, "The plot below shows the relationship between the width of your 95% confidence intervals and time as indicated by node ages./n /n")
+    out_string <- c(out_string, "The plot below shows the relationship between the width of your 95% confidence intervals and time as indicated by node ages.\n \n")
 
     png(tf1 <- tempfile(fileext = ".png"))
     plot(CI_width~age, data = CI_age,

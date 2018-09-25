@@ -17,7 +17,7 @@ make_phylo_prelim <- function(phy, group_name=NULL, out_string){
     txt <- base64Encode(readBin(tf1, "raw", file.info(tf1)[1, "size"]), "txt")
     out_figure <- paste0("![](data:image/png;base64,", txt, ")", collapse="")
     out_string <- c(out_string, out_figure, "\n \n")
-    out_string <- c(out_string, paste0("The phylogeny includes ", phy$Nnode, " nodes and is ", ultra(phy), ".", collapse="") )
+    out_string <- c(out_string, paste0("The phylogeny includes ", phy$Nnode, " nodes and is ", ultra(phy), ". \n \n", collapse="") )
 
     ## If a name of a group was given then we can compare with TOL:
     if( !is.null(group_name) ){
