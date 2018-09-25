@@ -7,7 +7,17 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## ASR
+
+Method requires a phylogeny and trait information coded as values (no character names).  Method will automatically check if the trait data are discrete or independently and drop tips from the phylogeny which are not part of the trait dataset. Be cautious, missing species in your reconstruction has an influence on your ancestral reconstruction (CITATION).
+
+## Conditions to run ASR
+
+Trait should evolve independently from other non-tested traits.
+
 ## Recommended steps before running ASR
+
+
 
 ## Recommended steps after running ASR
 

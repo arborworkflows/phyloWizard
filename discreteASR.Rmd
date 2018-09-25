@@ -1,5 +1,5 @@
 ---
-title: "Discrete ancestral State Reconstruction"
+title: "Discrete Ancestral State Reconstruction"
 output: html_document
 ---
 
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = FALSE)
 library(aRbor)
 library(geiger)
 library(knitr)
-
+library(pander)
 get_char_ratio <- function(ace_arbor){
   trait_ratio = list()
   for(row in 1:(length(ace_arbor[[1]])/2) ){
@@ -40,39 +40,63 @@ input_table = function(ace_arbor){
 
 output_table = function(ace_arbor){
   trait.ratio = get_char_ratio(ace_arbor)
-  tipChar = as.matrix(table(attributes(ace_arbor)$td$dat))
+  tipChar = as.matrix(table(attributes(ace_arbor)[[3]]$dat))
   
   ace_table <- data.frame('trait.ratio'=trait.ratio, "tipChar"=tipChar)
   names(ace_table) <- c("trait", "internal node frequency", 'tip frequency')
   rownames(ace_table) <- c()
   return(ace_table)
 }
+```
 
-# Load your data  
+## Load your data and run the method
+
+```{r, echo=TRUE, results='hide'}
+
 tr  <- read.tree("/home/blubb/Documents/Workshops_PD/Ithaca_2018/example_data_ARBOR/Heliconia_all_dated_mod.phy")
 trait <- read.csv('/home/blubb/Documents/Workshops_PD/Ithaca_2018/example_data_ARBOR/Heliconia_phylogeny_matrix.csv')
   ape::is.ultrametric(tr)
   if (  ape::is.ultrametric(tr) == FALSE){
     tr <- phytools::force.ultrametric(tr)
+    print("Your tree was not ultrametric, I forced it to be")
   }
 td = treeplyr::make.treedata(tr, trait)
-td
 
 ace_arbor = aRbor::aceArbor( select_(td, "Inflorescence"), charType='discrete', aceType = 'marginal')
-ace_table = input_table(ace_arbor)
-ace_output = output_table(ace_arbor)
-
 ```
 
+## Summaries about your ASR
 
 Besides calculating the ancestral states in the phylogeny, here are some summary information for discrete character.
 
 Table 1 shows you your type of trait, input, reconstruction method, the log Likelihood and the transition rate between the traits.
 ```{r}
+  ace_table = input_table(ace_arbor)
+
   kable(ace_table)
 ```
 
 Table 2 sums up the result.
 ```{r}
+ace_output = output_table(ace_arbor)
+
 kable(ace_output)
+```
+
+## Some information might have been removed during analysis
+
+Be aware that the function dropped some tips of your phylogeny:
+```{r}
+if (length(attributes(td)$dropped$dropped_from_data) >=1){
+  kable(attributes(td)$dropped$dropped_from_data)
+}else
+   pander::pander("No data was dropped.")
+```
+
+It might has dropped information from your trait dara as well: 
+```{r, eval = T}
+if (length(attributes(td)$dropped$dropped_from_tree) >=1){
+    kable(attributes(td)$dropped$dropped_from_tree)
+}else
+  pander::pander("No data was dropped.")
 ```
