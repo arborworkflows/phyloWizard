@@ -17,18 +17,19 @@ Trait should evolve independently from other non-tested traits.
 
 ## Recommended steps before running ASR
 
-
+Ask Luke Harmon.
 
 ## Recommended steps after running ASR
+
+Ask Brian O'Meara or test phylogenetic signal.
 
 ## Programs out of ARBOR which do similar analysis
 
 1. Mesquite
 2. ace function in the ape package in R 
 
-
 ## Relevant literature
 
-1.
-2.
+1. Ref 1
+2. Ref 2
 
